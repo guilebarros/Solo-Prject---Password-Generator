@@ -13,10 +13,25 @@
             <h1>Generate a <br><span>random password</span></h1>
             <h2>Never use an insecure password again.</h2>
 
+            <label for="pass-length">Enter length:</label><br>
+            <input type="text" id="pass-length" name="password length"><br>
+
+            <form class="form">
+
+                <label class="checks">Use symbols
+                <input type="checkbox" id="symbol-check">
+                <span class="checkmark"></span>
+                </label>
+                <label class="checks">Use numbers
+                <input type="checkbox" id="number-check">
+                <span class="checkmark"></span>
+                </label>
+            </form>
+
             <button id="button"><span>Generate passwords</span></button>
             <hr id="hor-rad">
-            <button class="password-btn" id="btn-1"></button>
-            <button class="password-btn" id="btn-2"></button>
+            <button id="btn-1"></button>
+            <button id="btn-2"></button>
 
         </div>
         <script src="index.js"></script>
