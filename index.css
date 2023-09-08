@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin-top: 10px;
     background-color: rgb(10, 2, 2);
     text-align:left;
 }
@@ -29,6 +29,9 @@ h1 span {
     width: 50%;
     margin: 0 auto;
     padding-left: 60px;
+    border: 4px solid #D5D4D8;
+    border-radius: 10px;
+
 }
 
 button {
@@ -45,18 +48,18 @@ button {
     transition: all 0.5s;
     cursor: pointer;
 }
-.button:hover {
+#button:hover {
     background: #24af5c;
 }
 
-.button span {
+#button span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
   }
   
-  .button span:after {
+#button span:after {
 
     content: '\00bb';
     position: absolute;
@@ -66,19 +69,19 @@ button {
     transition: 0.5s;
   }
   
-  .button:hover span {
+  #button:hover span {
     padding-right: 25px;
     
   }
   
-  .button:hover span:after {
+  #button:hover span:after {
 
     opacity: 1;
     right: 0;
   }
 
 
-.password-btn {
+#btn-1, #btn-2 {
     background: #273549;
     color: #55F991;
     height: 50px;
@@ -86,7 +89,6 @@ button {
     margin-right: 30px;
     margin-bottom: 100px;
     padding: 5px;
-
 
 }
 
