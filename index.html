@@ -15,6 +15,7 @@
 
             <label for="pass-length">Enter length:</label><br>
             <input type="text" id="pass-length" name="password length"><br>
+            <div id="length-message"><p>Your password will have 15 characters by default</p></div>
 
             <form class="form">
 
@@ -30,8 +31,15 @@
 
             <button id="button"><span>Generate passwords</span></button>
             <hr id="hor-rad">
-            <button id="btn-1"></button>
-            <button id="btn-2"></button>
+
+            <button id="btn-1" onclick="openPopup()"></button>
+            <button id="btn-2" onclick="openPopup()"></button>
+
+            <div class="popup" id="popup">
+                <img src="tick.png"> 
+                <p>Password copied to clipboard!</p>
+                <button onclick="closePopup()">OK</button>
+            </div>
            
         </div>
         

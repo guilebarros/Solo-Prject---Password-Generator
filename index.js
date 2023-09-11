@@ -17,7 +17,10 @@ const symbolCheck = document.getElementById("symbol-check")
 const numberCheck = document.getElementById("number-check")
 
 const lengthValue = document.getElementById("pass-length");
+const lengthMessage = document.getElementById("length-message")
 let passwordLength = 15; 
+
+let popup = document.getElementById("popup")
 
 let useNumbers = false
 let useSymbols = false
@@ -33,9 +36,12 @@ passwordTwo.addEventListener("click", function () {
 
 lengthValue.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
+      
       passwordLength = parseInt(lengthValue.value) 
       console.log('Enter key pressed! Value: ' + passwordLength);
+      lengthMessage.innerHTML = `<p>Your password has ${passwordLength} characters length</p>`
       lengthValue.value = ""
+
     }
   })
 
@@ -152,3 +158,12 @@ function generateRandomPassword(passwordLength, useNumbers, useSymbols) {
   }
   return password;
 }
+
+function openPopup() {
+  popup.classList.add("open-popup")
+}
+
+function closePopup() {
+  popup.classList.remove("open-popup")
+}
+

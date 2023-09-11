@@ -183,19 +183,65 @@ button {
 
 }
 
-#copy-popup {
-  display: none;
-  position: absolute;
-  background: #333;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 14px;
+#length-message {
+
+  color: #D5D4D8;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  font-family: 'Inter', sans-serif;
 }
+
 
 hr {
     margin-top: 20px;
     margin-right: 70px;
     border: 1px solid #2F3E53; 
 
+}
+
+.popup {
+  width: 200px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  font-family: 'Inter', sans-serif;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 10px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+.popup img {
+  width: 80px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.popup button {
+  width: 70%;
+  margin-top: 50%;
+  padding: 10px 0;
+  background: #273549;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size:  18px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
