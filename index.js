@@ -36,11 +36,20 @@ passwordTwo.addEventListener("click", function () {
 
 lengthValue.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      
-      passwordLength = parseInt(lengthValue.value) 
-      console.log('Enter key pressed! Value: ' + passwordLength);
-      lengthMessage.innerHTML = `<p>Your password has ${passwordLength} characters length</p>`
-      lengthValue.value = ""
+
+      if (lengthValue.value < 6) {
+        passwordLength = 5
+        lengthMessage.innerHTML = `<p>Passwords must have at least ${passwordLength} characters length</p>`
+      } else if (lengthValue.value > 20) {
+        passwordLength = 20
+        lengthMessage.innerHTML = `<p>Our passwords have ${passwordLength} characters limit.</p>`
+      } else {
+        passwordLength = parseInt(lengthValue.value) 
+        console.log('Enter key pressed! Value: ' + passwordLength);
+        lengthMessage.innerHTML = `<p>Your password has ${passwordLength} characters length</p>`
+        lengthValue.value = ""
+
+      }
 
     }
   })
