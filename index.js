@@ -1,10 +1,14 @@
 const characters =["A","B","C","D","E","F","G","H","I","J","K","L",
-                "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
+                "M","N","O","P","Q","R","S","T","U","V","W","X","Y",
+                "Z","a","b","c","d","e","f","g","h","i","j","k","l",
+                "m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                 "~","`","!","@","#","$","%","^","&","*","(",")","_",
+                 "-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
 "/"]
 
 
 const buttonGenerator = document.getElementById("button")
-
 
 const passwordOne = document.getElementById("btn-1")
 const passwordTwo = document.getElementById("btn-2")
@@ -14,6 +18,9 @@ const numberCheck = document.getElementById("number-check")
 
 const lengthValue = document.getElementById("pass-length");
 let passwordLength = 15; 
+
+let useNumbers = false
+let useSymbols = false
 
 passwordOne.addEventListener("click", function () {
   copyToClipboard(passwordOne.textContent);
@@ -26,9 +33,8 @@ passwordTwo.addEventListener("click", function () {
 
 lengthValue.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      passwordLength = parseInt(lengthValue.value) // Get the input value
+      passwordLength = parseInt(lengthValue.value) 
       console.log('Enter key pressed! Value: ' + passwordLength);
-      // Now you can use the passwordLength variable for further processing
       lengthValue.value = ""
     }
   })
@@ -37,24 +43,33 @@ lengthValue.addEventListener('keydown', (event) => {
 symbolCheck.addEventListener('change', function() {
     if (this.checked) {
       console.log("Symbol is checked..");
+      useSymbols = true
+      console.log(useSymbols)
     } else {
       console.log("Symbol is not checked..");
+      useSymbols = false
+      console.log(useSymbols)
+
     }
-  });
+  })
 
   numberCheck.addEventListener('change', function() {
     if (this.checked) {
       console.log("Numbox is checked..");
+      useNumbers = true
+      console.log(useNumbers)
     } else {
       console.log("Numbox is not checked..");
+      useNumbers = false
+      console.log(useNumbers)
     }
-  });
+  })
 
 buttonGenerator.addEventListener("click", function() {
     
     
-    passwordOne.textContent = generateRandomPassword(passwordLength)
-    passwordTwo.textContent = generateRandomPassword(passwordLength)
+    passwordOne.textContent = generateRandomPassword(passwordLength, useNumbers, useSymbols)
+    passwordTwo.textContent = generateRandomPassword(passwordLength, useNumbers, useSymbols)
 
 })
 
@@ -96,13 +111,44 @@ function clearPasswords() {
   passwordTwo.textContent = ""
 }
 
-function generateRandomPassword(passwordLength) {
+// function generateRandomPassword(passwordLength) {
 
-  let password = ""
+//   let password = ""
+
+//   for (let i = 0; i < passwordLength; i++) {
+//     const randomIndex = Math.floor(Math.random() * characters.length)
+//     password += characters [randomIndex]
+//   }
+//   return password
+// }
+
+function generateRandomPassword(passwordLength, useNumbers, useSymbols) {
+
+  let characterSet = ["A","B","C","D","E","F","G","H","I","J","K","L",
+  "M","N","O","P","Q","R","S","T","U","V","W","X","Y",
+  "Z","a","b","c","d","e","f","g","h","i","j","k","l",
+  "m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+   "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+   "~","`","!","@","#","$","%","^","&","*","(",")","_",
+   "-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
+"/"] 
+
+  if (!useNumbers) {
+    // Exclude numbers
+    characterSet = characterSet.filter(char => isNaN(char));
+  }
+
+  if (!useSymbols) {
+
+    characterSet = characterSet.filter(char => !/[~`!@#$%^&*()_\-+={}[\]|:;<>,.?/]/.test(char));
+  }
+
+
+  let password = "";
 
   for (let i = 0; i < passwordLength; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length)
-    password += characters [randomIndex]
+    const randomIndex = Math.floor(Math.random() * characterSet.length);
+    password += characterSet[randomIndex];
   }
-  return password
+  return password;
 }
