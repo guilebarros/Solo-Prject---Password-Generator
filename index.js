@@ -13,15 +13,25 @@ const symbolCheck = document.getElementById("symbol-check")
 const numberCheck = document.getElementById("number-check")
 
 const lengthValue = document.getElementById("pass-length");
+let passwordLength = 15; 
+
+passwordOne.addEventListener("click", function () {
+  copyToClipboard(passwordOne.textContent);
+});
+
+passwordTwo.addEventListener("click", function () {
+  copyToClipboard(passwordTwo.textContent);
+});
+
 
 lengthValue.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-      const passwordLength = lengthValue.value; // Get the input value
+      passwordLength = parseInt(lengthValue.value) // Get the input value
       console.log('Enter key pressed! Value: ' + passwordLength);
       // Now you can use the passwordLength variable for further processing
-      lengthValue.value = "";
+      lengthValue.value = ""
     }
-  });
+  })
 
 
 symbolCheck.addEventListener('change', function() {
@@ -41,8 +51,58 @@ symbolCheck.addEventListener('change', function() {
   });
 
 buttonGenerator.addEventListener("click", function() {
-    passwordOne.textContent += "Howdy"
-    passwordTwo.textContent += "Lula Livre"
+    
+    
+    passwordOne.textContent = generateRandomPassword(passwordLength)
+    passwordTwo.textContent = generateRandomPassword(passwordLength)
 
 })
 
+passwordOne.addEventListener("click", function () {
+  copyToClipboard(passwordOne.textContent);
+});
+
+passwordTwo.addEventListener("click", function () {
+  copyToClipboard(passwordTwo.textContent);
+});
+
+
+
+function copyToClipboard(text) {
+  // Create a temporary element to hold the text
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  // Append the element to the DOM
+  document.body.appendChild(textArea);
+
+  // Select the text in the textarea
+  textArea.select();
+
+  try {
+      // Use the Clipboard API to copy the text
+      document.execCommand("copy");
+      // alert("Text copied to clipboard: " + text);
+  } catch (err) {
+      console.error("Unable to copy text: ", err);
+  } finally {
+      // Clean up by removing the temporary element
+      document.body.removeChild(textArea);
+  }
+}
+
+function clearPasswords() {
+  passwordOne.textContent = ""
+  passwordTwo.textContent = ""
+}
+
+function generateRandomPassword(passwordLength) {
+
+  let password = ""
+
+  for (let i = 0; i < passwordLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length)
+    password += characters [randomIndex]
+  }
+  return password
+}
